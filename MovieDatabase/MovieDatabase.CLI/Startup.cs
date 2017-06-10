@@ -1,6 +1,7 @@
 ﻿using System;
 using MovieDatabase.CLI.Commands;
 using MovieDatabase.CLI.Core;
+using MovieDatabase.Data;
 
 namespace MovieDatabase.CLI
 {
@@ -10,7 +11,8 @@ namespace MovieDatabase.CLI
 		{
 			Console.Title = "MovieDatabase";
 
-			var commandsFactory = new CommandsFactory();
+			var dbContext = new MovieDbContext();
+			var commandsFactory = new CommandsFactory(dbContext);
 			var parser = new CommandParser(commandsFactory);
 
 			var engine = new Engine(parser);

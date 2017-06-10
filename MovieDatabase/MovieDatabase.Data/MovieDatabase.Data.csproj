@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ABB3329E-0D50-400A-9B9E-E23959377E58}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>MovieDatabase.CLI</RootNamespace>
-    <AssemblyName>MovieDatabase.CLI</AssemblyName>
+    <ProjectGuid>{6ECF2F4F-1071-4F54-ADC9-1DA2A3182E54}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MovieDatabase.Data</RootNamespace>
+    <AssemblyName>MovieDatabase.Data</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -49,29 +47,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\Command.cs" />
-    <Compile Include="Commands\CommandsFactory.cs" />
-    <Compile Include="Commands\Contracts\ICommand.cs" />
-    <Compile Include="Commands\CreateMovieCommand.cs" />
-    <Compile Include="Common\Exceptions\UserException.cs" />
-    <Compile Include="Core\CommandParser.cs" />
-    <Compile Include="Core\Engine.cs" />
-    <Compile Include="Startup.cs" />
+    <Compile Include="Migrations\201706101656505_Initial.cs" />
+    <Compile Include="Migrations\201706101656505_Initial.Designer.cs">
+      <DependentUpon>201706101656505_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="MovieDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MovieDatabase.Data\MovieDatabase.Data.csproj">
-      <Project>{6ecf2f4f-1071-4f54-adc9-1da2a3182e54}</Project>
-      <Name>MovieDatabase.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MovieDatabase.Models\MovieDatabase.Models.csproj">
       <Project>{703e3767-eb49-41cc-a946-1b237f7a1eb5}</Project>
       <Name>MovieDatabase.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706101656505_Initial.resx">
+      <DependentUpon>201706101656505_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

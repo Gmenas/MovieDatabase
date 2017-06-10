@@ -5,7 +5,7 @@ namespace MovieDatabase.CLI.Core
 {
 	public class Engine
 	{
-		private CommandParser parser;
+		private readonly CommandParser parser;
 
 		public Engine(CommandParser parser)
 		{
@@ -17,6 +17,11 @@ namespace MovieDatabase.CLI.Core
 			while (true)
 			{
 				string inputLine = Console.ReadLine();
+
+				if (inputLine.ToLower() == "exit")
+				{
+					break;
+				}
 
 				try
 				{

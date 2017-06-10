@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text.RegularExpressions;
 using MovieDatabase.CLI.Commands;
 
 namespace MovieDatabase.CLI.Core
@@ -14,11 +15,13 @@ namespace MovieDatabase.CLI.Core
 
 		public string Parse(string commandText)
 		{
-			var commandName = commandText.Split(' ')[0];
-			var commandParameters = commandText
-				.Split(' ')
-				.Skip(1)
+			var parameters = Regex.Matches(commandText, "(\"[^\"]+\")|\\S+")
+				.Cast<Match>()
+				.Select(m => m.Value.Replace("\"", ""))
 				.ToList();
+
+			var commandName = parameters[0];
+			var commandParameters = parameters.Skip(1).ToList();
 
 			var command = this.commandsFactory.CreateCommandFromString(commandName);
 			var executionResult = command.Execute(commandParameters);

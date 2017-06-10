@@ -1,13 +1,16 @@
-﻿using System;
-using MovieDatabase.CLI.Commands.Contracts;
+﻿using MovieDatabase.CLI.Commands.Contracts;
 using MovieDatabase.CLI.Common.Exceptions;
+using MovieDatabase.Data;
 
 namespace MovieDatabase.CLI.Commands
 {
 	public class CommandsFactory
 	{
-		public CommandsFactory()
+		private readonly MovieDbContext dbContext;
+
+		public CommandsFactory(MovieDbContext dbContext)
 		{
+			this.dbContext = dbContext;
 		}
 
 		public ICommand CreateCommandFromString(string commandName)
@@ -21,9 +24,9 @@ namespace MovieDatabase.CLI.Commands
 			}
 		}
 
-		public ICommand CreateMovieCommand()
+		private ICommand CreateMovieCommand()
 		{
-			throw new NotImplementedException();
+			return new CreateMovieCommand(dbContext);
 		}
 	}
 }

@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieDatabase.CLI", "MovieDatabase.CLI\MovieDatabase.CLI.csproj", "{ABB3329E-0D50-400A-9B9E-E23959377E58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieDatabase.Data", "MovieDatabase.Data\MovieDatabase.Data.csproj", "{6ECF2F4F-1071-4F54-ADC9-1DA2A3182E54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieDatabase.Models", "MovieDatabase.Models\MovieDatabase.Models.csproj", "{703E3767-EB49-41CC-A946-1B237F7A1EB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{ABB3329E-0D50-400A-9B9E-E23959377E58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABB3329E-0D50-400A-9B9E-E23959377E58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABB3329E-0D50-400A-9B9E-E23959377E58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ECF2F4F-1071-4F54-ADC9-1DA2A3182E54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ECF2F4F-1071-4F54-ADC9-1DA2A3182E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ECF2F4F-1071-4F54-ADC9-1DA2A3182E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ECF2F4F-1071-4F54-ADC9-1DA2A3182E54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{703E3767-EB49-41CC-A946-1B237F7A1EB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{703E3767-EB49-41CC-A946-1B237F7A1EB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{703E3767-EB49-41CC-A946-1B237F7A1EB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{703E3767-EB49-41CC-A946-1B237F7A1EB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
