@@ -1,5 +1,6 @@
-﻿using MovieDatabase.CLI.Commands.Contracts;
+﻿using MovieDatabase.CLI.Common.Console;
 using MovieDatabase.CLI.Common.Exceptions;
+using MovieDatabase.CLI.Parsers;
 using MovieDatabase.Data;
 
 namespace MovieDatabase.CLI.Commands
@@ -7,26 +8,32 @@ namespace MovieDatabase.CLI.Commands
 	public class CommandsFactory
 	{
 		private readonly MovieDbContext dbContext;
+		private Reader reader;
+		private Writer writer;
 
-		public CommandsFactory(MovieDbContext dbContext)
+		public CommandsFactory(MovieDbContext dbContext,Reader reader,Writer writer)
 		{
 			this.dbContext = dbContext;
+			this.reader = reader;
+			this.writer = writer;
 		}
 
-		public ICommand CreateCommandFromString(string commandName)
+		public string CreateCommandFromString(string commandName)
 		{
 			switch (commandName.ToLower())
 			{
 				case "createmovie":
-					return this.CreateMovieCommand();
+					return this.ParseMovie();
 				default:
 					throw new UserException($"Command '{commandName}' is not recognised!");
 			}
 		}
 
-		private ICommand CreateMovieCommand()
+		private string ParseMovie()
 		{
-			return new CreateMovieCommand(dbContext);
+			return new ParseMovie(this.reader, this.writer,this.dbContext).Parse();
 		}
+
+
 	}
 }

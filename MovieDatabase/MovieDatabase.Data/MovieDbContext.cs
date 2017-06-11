@@ -14,6 +14,8 @@ namespace MovieDatabase.Data
 
 		public DbSet<Movie> Movies { get; set; }
 
+		public DbSet<CastMember> CastMembers { get; set; }
+
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<Movie>()
