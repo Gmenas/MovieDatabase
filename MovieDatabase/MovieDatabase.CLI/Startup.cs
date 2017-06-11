@@ -2,7 +2,7 @@
 using MovieDatabase.CLI.Commands;
 using MovieDatabase.CLI.Core;
 using MovieDatabase.Data;
-using MovieDatabase.CLI.Common.Console;
+using MovieDatabase.Models;
 
 namespace MovieDatabase.CLI
 {
@@ -13,11 +13,9 @@ namespace MovieDatabase.CLI
 			Console.Title = "MovieDatabase";
 
 			var dbContext = new MovieDbContext();
-			var reader = new Reader();
-			var writer = new Writer();
-			var commandsFactory = new CommandsFactory(dbContext,reader,writer);
+			var commandsFactory = new CommandsFactory(dbContext);
 
-			var engine = new Engine(commandsFactory,reader,writer);
+			var engine = new Engine(commandsFactory);
 			engine.Start();
 		}
 	}

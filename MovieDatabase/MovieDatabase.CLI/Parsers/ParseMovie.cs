@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MovieDatabase.CLI.Common.Console;
 using MovieDatabase.CLI.Commands;
 using MovieDatabase.Data;
-using MovieDatabase.Models;
 
 namespace MovieDatabase.CLI.Parsers
 {
 	class ParseMovie : Parser
 	{
-		public ParseMovie(Reader reader, Writer writer, MovieDbContext dbContext) : base(reader, writer, dbContext)
+		public ParseMovie(MovieDbContext dbContext)
+			: base(dbContext)
 		{
 		}
 
@@ -39,7 +36,6 @@ namespace MovieDatabase.CLI.Parsers
 			var movie = LoadOrCreate.Movie(dbContext, title, year, director, actors);
 
 			return $"Successfully created {title}\n";
-
 		}
 
 		private IList<string> GetParameters()

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieDatabase.Models
 {
@@ -10,7 +11,7 @@ namespace MovieDatabase.Models
 
 		public int Year { get; set; }
 
-		//public CastMember Director { get; set; }
+		public virtual CastMember Director { get; set; }
 
 		public virtual ICollection<CastMember> Actors { get; set; }
 	}

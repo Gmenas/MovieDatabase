@@ -3,7 +3,7 @@ namespace MovieDatabase.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -21,35 +21,38 @@ namespace MovieDatabase.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(nullable: false, maxLength: 50),
+                        Title = c.String(),
                         Year = c.Int(nullable: false),
+                        Director_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .Index(t => t.Title, unique: true);
+                .ForeignKey("dbo.CastMembers", t => t.Director_Id)
+                .Index(t => t.Director_Id);
             
             CreateTable(
-                "dbo.MovieCastMembers",
+                "dbo.MoviesActors",
                 c => new
                     {
                         Movie_Id = c.Int(nullable: false),
-                        CastMember_Id = c.Int(nullable: false),
+                        Actor_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Movie_Id, t.CastMember_Id })
+                .PrimaryKey(t => new { t.Movie_Id, t.Actor_Id })
                 .ForeignKey("dbo.Movies", t => t.Movie_Id, cascadeDelete: true)
-                .ForeignKey("dbo.CastMembers", t => t.CastMember_Id, cascadeDelete: true)
+                .ForeignKey("dbo.CastMembers", t => t.Actor_Id, cascadeDelete: true)
                 .Index(t => t.Movie_Id)
-                .Index(t => t.CastMember_Id);
+                .Index(t => t.Actor_Id);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.MovieCastMembers", "CastMember_Id", "dbo.CastMembers");
-            DropForeignKey("dbo.MovieCastMembers", "Movie_Id", "dbo.Movies");
-            DropIndex("dbo.MovieCastMembers", new[] { "CastMember_Id" });
-            DropIndex("dbo.MovieCastMembers", new[] { "Movie_Id" });
-            DropIndex("dbo.Movies", new[] { "Title" });
-            DropTable("dbo.MovieCastMembers");
+            DropForeignKey("dbo.Movies", "Director_Id", "dbo.CastMembers");
+            DropForeignKey("dbo.MoviesActors", "Actor_Id", "dbo.CastMembers");
+            DropForeignKey("dbo.MoviesActors", "Movie_Id", "dbo.Movies");
+            DropIndex("dbo.MoviesActors", new[] { "Actor_Id" });
+            DropIndex("dbo.MoviesActors", new[] { "Movie_Id" });
+            DropIndex("dbo.Movies", new[] { "Director_Id" });
+            DropTable("dbo.MoviesActors");
             DropTable("dbo.Movies");
             DropTable("dbo.CastMembers");
         }
