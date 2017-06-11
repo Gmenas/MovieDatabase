@@ -16,6 +16,8 @@ namespace MovieDatabase.Data
 
 		public DbSet<CastMember> CastMembers { get; set; }
 
+		public DbSet<Country> Country { get; set; }
+
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			//modelBuilder.Entity<Movie>()

@@ -47,9 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201706111623095_Initial.cs" />
-    <Compile Include="Migrations\201706111623095_Initial.Designer.cs">
-      <DependentUpon>201706111623095_Initial.cs</DependentUpon>
+    <Compile Include="CountryData.cs" />
+    <Compile Include="Migrations\201706112027160_Initial.cs" />
+    <Compile Include="Migrations\201706112027160_Initial.Designer.cs">
+      <DependentUpon>201706112027160_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MovieDbContext.cs" />
@@ -65,8 +66,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706111623095_Initial.resx">
-      <DependentUpon>201706111623095_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706112027160_Initial.resx">
+      <DependentUpon>201706112027160_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
