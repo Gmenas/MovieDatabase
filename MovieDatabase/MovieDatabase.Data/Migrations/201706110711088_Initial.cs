@@ -12,14 +12,16 @@ namespace MovieDatabase.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(),
+                        Title = c.String(nullable: false, maxLength: 50),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Title, unique: true);
             
         }
         
         public override void Down()
         {
+            DropIndex("dbo.Movies", new[] { "Title" });
             DropTable("dbo.Movies");
         }
     }

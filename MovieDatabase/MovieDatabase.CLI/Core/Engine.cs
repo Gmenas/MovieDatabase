@@ -26,7 +26,7 @@ namespace MovieDatabase.CLI.Core
 				try
 				{
 					string output = this.parser.Parse(inputLine);
-					Console.WriteLine(output);
+					Console.WriteLine($" -{output}");
 				}
 				catch (UserException e)
 				{
