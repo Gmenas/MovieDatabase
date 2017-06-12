@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MovieDatabase.Models;
+using MovieDatabase.Models.Common.Exceptions;
 
 namespace MovieDatabase.Data.DbCommands
 {
@@ -52,6 +53,21 @@ namespace MovieDatabase.Data.DbCommands
 			return movie;
 		}
 
+		public string Remove(string title)
+		{
+			var movie = this.dbContext.Movies.FirstOrDefault(x => x.Title == title);
+
+			string genreName = String.Copy(movie.Genre.Name);
+
+			if (movie == null)
+			{
+				throw new UserException($"Movie {title} doesn't exist");
+			}
+			this.dbContext.Movies.Remove(movie);
+
+			return genreName;
+		}
+
 		public string List(List<string> parameters)
 		{
 			IEnumerable<string> movies;
@@ -69,7 +85,7 @@ namespace MovieDatabase.Data.DbCommands
 						.ToList()
 						.Select(x => x.ToString());
 					break;
-				case "by-most-recent":
+				case "by-year":
 					movies = this.dbContext.Movies
 						.OrderByDescending(x => x.Year)
 						.ToList()

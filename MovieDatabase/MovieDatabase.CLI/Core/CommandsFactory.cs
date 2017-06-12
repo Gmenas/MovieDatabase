@@ -44,6 +44,10 @@ namespace MovieDatabase.CLI.Commands
 					return this.CreateCastMember();
 				case "list-movies":
 					return this.ListMovies(parameters);
+				case "remove-movie":
+					return this.RemoveMovie(parameters);
+				case "remove-genre":
+					return this.RemoveGenre(parameters);
 				default:
 					throw new UserException($"Command '{commandName}' is not recognised!");
 			}
@@ -63,6 +67,32 @@ namespace MovieDatabase.CLI.Commands
 			this.dbContext.SaveChanges();
 
 			return "Movie succesfully created!";
+		}
+
+		private string RemoveMovie(List<string> parameters)
+		{
+			var title = string.Join(" ", parameters);
+
+			var genreToCheck = this.movieCmd.Remove(title);
+			this.dbContext.SaveChanges();
+
+			if(this.dbContext.Movies.FirstOrDefault(x=>x.Genre.Name == genreToCheck) == null)
+			{
+				RemoveGenre(genreToCheck.Split(' ').ToList());
+			}
+			this.dbContext.SaveChanges();
+
+			return $"Movie {title} successfully removed!";
+		}
+
+		private string RemoveGenre(List<string> parameters)
+		{
+			var name = string.Join(" ", parameters);
+
+			this.genreCmd.Remove(name);
+			this.dbContext.SaveChanges();
+
+			return $"Genre {name} successfully removed!";
 		}
 
 		private string CreateCastMember()
