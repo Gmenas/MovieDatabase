@@ -13,7 +13,7 @@ namespace MovieDatabase.CLI.Parsers
 
 		public CreateMovieParser(
 			MovieDbCommand movieCmd,
-			CastMemberDbCommand castMemberCmd, 
+			CastMemberDbCommand castMemberCmd,
 			CountryDbCommand countryCmd,
 			GenreDbCommand genreCmd)
 		{
@@ -76,9 +76,16 @@ namespace MovieDatabase.CLI.Parsers
 				.Select(aName =>
 				{
 					var actor = this.castMemberCmd.Find(aName);
-					if (actor == null && aName != director.Name)
+					if (actor == null)
 					{
-						actor = this.castMemberCmd.Create(aName);
+						if (aName == director.Name)
+						{
+							actor = director;
+						}
+						else
+						{
+							actor = this.castMemberCmd.Create(aName);
+						}
 					}
 					return actor;
 				})
