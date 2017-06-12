@@ -36,6 +36,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -49,6 +52,8 @@
   <ItemGroup>
     <Compile Include="DbCommands\CountryDbCommand.cs" />
     <Compile Include="DbCommands\GenreDbCommand.cs" />
+    <Compile Include="InitialDataLoaders\Models\MovieJsonModel.cs" />
+    <Compile Include="InitialDataLoaders\Parsers\CreateMovieParser.cs" />
     <Compile Include="Migrations\201706121649345_Initial.cs" />
     <Compile Include="Migrations\201706121649345_Initial.Designer.cs">
       <DependentUpon>201706121649345_Initial.cs</DependentUpon>
@@ -56,7 +61,7 @@
     <Compile Include="ModelConfigurations\GenreConfiguration.cs" />
     <Compile Include="DbCommands\MovieDbCommand.cs" />
     <Compile Include="DbCommands\CastMemberDbCommand.cs" />
-    <Compile Include="InitialDataLoaders\CountryData.cs" />
+    <Compile Include="InitialDataLoaders\InitialData.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelConfigurations\CastMemberConfiguration.cs" />
     <Compile Include="ModelConfigurations\CountryConfiguration.cs" />

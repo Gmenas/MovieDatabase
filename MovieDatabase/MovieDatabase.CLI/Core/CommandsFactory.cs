@@ -58,7 +58,7 @@ namespace MovieDatabase.CLI.Commands
 				this.genreCmd
 			);
 
-			movieParser.Parse();
+			movieParser.ParseFromConsole();
 
 			this.dbContext.SaveChanges();
 
@@ -71,7 +71,7 @@ namespace MovieDatabase.CLI.Commands
 					this.castMemberCmd
 			);
 
-			castMemberParser.Parse();
+			castMemberParser.ParseFromConsole();
 
 			this.dbContext.SaveChanges();
 

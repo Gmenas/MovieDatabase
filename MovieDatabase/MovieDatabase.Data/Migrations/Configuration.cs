@@ -12,7 +12,11 @@ namespace MovieDatabase.Data.Migrations
 
 		protected override void Seed(MovieDbContext dbContext)
 		{
-			dbContext.Countries.AddRange(CountryData.GetCountries());
+			InitialData.AddCountries(dbContext);
+
+			dbContext.SaveChanges();
+
+			InitialData.AddMovies(dbContext);
 		}
 	}
 }

@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InitialData", "InitialData", "{F2B199A9-DC41-4626-8968-A6E371738B25}"
 	ProjectSection(SolutionItems) = preProject
 		InitialData\countries.xml = InitialData\countries.xml
+		InitialData\sample-movies.json = InitialData\sample-movies.json
 	EndProjectSection
 EndProject
 Global

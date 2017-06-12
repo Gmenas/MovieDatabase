@@ -12,7 +12,7 @@ namespace MovieDatabase.CLI.Parsers
 			this.castMemberCmd = castMemberCmd;
 		}
 
-		public void Parse()
+		public void ParseFromConsole()
 		{
 			var name = GetParameter("Name");
 			if (this.castMemberCmd.Find(name) != null)

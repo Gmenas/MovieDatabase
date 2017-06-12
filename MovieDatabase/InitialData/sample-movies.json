@@ -1,0 +1,30 @@
+{
+    "movies": [
+        {
+            "title": "The Godfather",
+            "year": 1972,
+            "country": "United States",
+            "director": "Francis Ford Coppola",
+            "rating": 9.2,
+            "genre": "Drama",
+            "actors": [
+                 "Marlon Brando",
+                 "Al Pacino",
+                 "James Caan"
+            ]
+        },
+        {
+            "title": "The Dark Knight",
+            "year": 2008,
+            "country": "United States",
+            "director": "Christopher Nolan",
+            "rating": 8.9,
+            "genre": "Action",
+            "actors": [
+                 "Christian Bale", 
+                 "Heath Ledger",
+                 "Aaron Eckhart"
+            ]
+        }
+    ]
+}

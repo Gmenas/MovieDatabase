@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using MovieDatabase.Data.DbCommands;
 using MovieDatabase.Models.Common.Exceptions;
 
@@ -23,7 +25,7 @@ namespace MovieDatabase.CLI.Parsers
 			this.genreCmd = genreCmd;
 		}
 
-		public void Parse()
+		public void ParseFromConsole()
 		{
 			var title = GetParameter("Title");
 			if (this.movieCmd.Find(title) != null)
@@ -91,7 +93,7 @@ namespace MovieDatabase.CLI.Parsers
 				})
 				.ToList();
 
-			var movie = this.movieCmd.Create(title, year, country, director, rating, genre, actors);
+			this.movieCmd.Create(title, year, country, director, rating, genre, actors);
 		}
 	}
 }
