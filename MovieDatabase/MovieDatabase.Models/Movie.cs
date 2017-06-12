@@ -5,7 +5,7 @@ namespace MovieDatabase.Models
 {
 	public class Movie
 	{
-		private string country;
+		private Country country;
 
 		public int Id { get; set; }
 
@@ -13,7 +13,7 @@ namespace MovieDatabase.Models
 
 		public int Year { get; set; }
 
-		public string Country
+		public Country Country
 		{
 			get
 			{

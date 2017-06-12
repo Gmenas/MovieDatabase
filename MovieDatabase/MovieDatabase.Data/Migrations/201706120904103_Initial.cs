@@ -13,11 +13,8 @@ namespace MovieDatabase.Data.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        Country_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Countries", t => t.Country_Id)
-                .Index(t => t.Country_Id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Movies",
@@ -26,15 +23,14 @@ namespace MovieDatabase.Data.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Title = c.String(),
                         Year = c.Int(nullable: false),
-                        Country = c.String(),
-                        Director_Id = c.Int(),
                         Country_Id = c.Int(),
+                        Director_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.CastMembers", t => t.Director_Id)
                 .ForeignKey("dbo.Countries", t => t.Country_Id)
-                .Index(t => t.Director_Id)
-                .Index(t => t.Country_Id);
+                .ForeignKey("dbo.CastMembers", t => t.Director_Id)
+                .Index(t => t.Country_Id)
+                .Index(t => t.Director_Id);
             
             CreateTable(
                 "dbo.Countries",
@@ -62,16 +58,14 @@ namespace MovieDatabase.Data.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.CastMembers", "Country_Id", "dbo.Countries");
-            DropForeignKey("dbo.Movies", "Country_Id", "dbo.Countries");
             DropForeignKey("dbo.Movies", "Director_Id", "dbo.CastMembers");
+            DropForeignKey("dbo.Movies", "Country_Id", "dbo.Countries");
             DropForeignKey("dbo.MoviesActors", "Actor_Id", "dbo.CastMembers");
             DropForeignKey("dbo.MoviesActors", "Movie_Id", "dbo.Movies");
             DropIndex("dbo.MoviesActors", new[] { "Actor_Id" });
             DropIndex("dbo.MoviesActors", new[] { "Movie_Id" });
-            DropIndex("dbo.Movies", new[] { "Country_Id" });
             DropIndex("dbo.Movies", new[] { "Director_Id" });
-            DropIndex("dbo.CastMembers", new[] { "Country_Id" });
+            DropIndex("dbo.Movies", new[] { "Country_Id" });
             DropTable("dbo.MoviesActors");
             DropTable("dbo.Countries");
             DropTable("dbo.Movies");

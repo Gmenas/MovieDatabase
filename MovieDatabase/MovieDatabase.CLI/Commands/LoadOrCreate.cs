@@ -29,7 +29,7 @@ namespace MovieDatabase.CLI.Commands
 			return castMember;
 		}
 
-		public static Movie Movie(MovieDbContext dbContext, string title, int year, CastMember director, ICollection<CastMember> actors)
+		public static Movie Movie(MovieDbContext dbContext, string title, int year, Country country, CastMember director, ICollection<CastMember> actors)
 		{
 			var movie = dbContext.Movies
 				.Where(m => m.Title == title)
@@ -46,7 +46,8 @@ namespace MovieDatabase.CLI.Commands
 				Title = title,
 				Year = year,
 				//Director = director,
-				Actors = actors
+				Actors = actors,
+				Country = country
 			};
 
 			dbContext.Movies.Add(movie);

@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="Commands\CommandsFactory.cs" />
     <Compile Include="Commands\LoadOrCreate.cs" />
-    <Compile Include="Common\Console\Exceptions\UserException.cs" />
+    <Compile Include="Common\Exceptions\UserException.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Parsers\ParseMovie.cs" />
     <Compile Include="Parsers\Parser.cs" />

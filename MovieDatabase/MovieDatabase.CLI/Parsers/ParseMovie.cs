@@ -33,7 +33,15 @@ namespace MovieDatabase.CLI.Parsers
 				.Select(x => LoadOrCreate.CastMember(dbContext, x))
 				.ToList();
 
-			var movie = LoadOrCreate.Movie(dbContext, title, year, director, actors);
+			var countryName = parameters[4];
+			var country = dbContext.Countries.FirstOrDefault(x => x.Name == countryName);
+
+			if (country == null)
+			{
+				return "Invalid country";
+			}
+
+			var movie = LoadOrCreate.Movie(dbContext, title, year, country, director, actors);
 
 			return $"Successfully created {title}\n";
 		}
@@ -45,7 +53,8 @@ namespace MovieDatabase.CLI.Parsers
 				GetParameter("Title"),
 				GetParameter("Year"),
 				GetParameter("Director"),
-				GetParameter("Actors")
+				GetParameter("Actors"),
+				GetParameter("Country")
 			};
 
 			return parameters;

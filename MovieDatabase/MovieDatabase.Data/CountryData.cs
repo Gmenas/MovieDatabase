@@ -14,7 +14,7 @@ namespace MovieDatabase.Data
 
 		static CountryData()
 		{
-			var doc = XDocument.Load("D:\\Documents\\Telerik Academy\\Projects\\MovieDatabase\\MovieDatabase\\MovieDatabase.Data\\countries.xml");
+			var doc = XDocument.Load("D:\\Documents\\Telerik Academy\\Projects\\MovieDatabase\\MovieDatabase\\MovieDatabase.Data\\countries.xml"); //("..\\..\\..\\MovieDatabase.Data\\countries.xml"); kize bil
 			countries = doc.Descendants().Select(x => new Country { Name = x.Value }).Skip(1).ToList();
 		}
 	}
