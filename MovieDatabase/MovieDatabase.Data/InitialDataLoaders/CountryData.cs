@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace MovieDatabase.Data
+namespace MovieDatabase.Data.InitialDataLoaders
 {
 	public static class CountryData
 	{

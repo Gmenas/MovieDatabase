@@ -1,6 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using MovieDatabase.Models;
+using MovieDatabase.Models.Common.Exceptions;
 
 namespace MovieDatabase.Data.DbCommands
 {
@@ -25,7 +25,7 @@ namespace MovieDatabase.Data.DbCommands
 		{
 			if (this.Find(name) != null)
 			{
-				throw new Exception();
+				throw new UserException("Cast member exists!");
 			}
 
 			var castMember = new CastMember

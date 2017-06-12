@@ -1,4 +1,5 @@
 using System.Data.Entity.Migrations;
+using MovieDatabase.Data.InitialDataLoaders;
 
 namespace MovieDatabase.Data.Migrations
 {

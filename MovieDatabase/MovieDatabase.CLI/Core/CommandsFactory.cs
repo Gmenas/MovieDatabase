@@ -2,6 +2,8 @@
 using MovieDatabase.CLI.Parsers;
 using MovieDatabase.Data;
 using MovieDatabase.Data.DbCommands;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace MovieDatabase.CLI.Commands
 {
@@ -12,6 +14,7 @@ namespace MovieDatabase.CLI.Commands
 		private readonly MovieDbCommand movieCmd;
 		private readonly CastMemberDbCommand castMemberCmd;
 		private readonly CountryDbCommand countryCmd;
+		private readonly GenreDbCommand genreCmd;
 
 		public CommandsFactory(MovieDbContext dbContext)
 		{
@@ -20,11 +23,18 @@ namespace MovieDatabase.CLI.Commands
 			this.movieCmd = new MovieDbCommand(this.dbContext);
 			this.castMemberCmd = new CastMemberDbCommand(this.dbContext);
 			this.countryCmd = new CountryDbCommand(this.dbContext);
+			this.genreCmd = new GenreDbCommand(this.dbContext);
 		}
 
-		public string RunCommandFromStr(string commandName)
+		public string RunCommandFromStr(string input)
 		{
-			switch (commandName.ToLower().Trim())
+			var commandName = input.ToLower().Split(' ')[0];
+			var parameters = input
+				.Split(' ')
+				.Skip(1)
+				.ToList();
+
+			switch (commandName)
 			{
 				case "create-movie":
 					return this.CreateMovie();
@@ -33,7 +43,7 @@ namespace MovieDatabase.CLI.Commands
 				case "create-director":
 					return this.CreateCastMember();
 				case "list-movies":
-					return this.ListMovies();
+					return this.ListMovies(parameters);
 				default:
 					throw new UserException($"Command '{commandName}' is not recognised!");
 			}
@@ -44,7 +54,8 @@ namespace MovieDatabase.CLI.Commands
 			var movieParser = new CreateMovieParser(
 				this.movieCmd,
 				this.castMemberCmd,
-				this.countryCmd
+				this.countryCmd,
+				this.genreCmd
 			);
 
 			movieParser.Parse();
@@ -67,9 +78,9 @@ namespace MovieDatabase.CLI.Commands
 			return "Actor/director succesfully created!";
 		}
 
-		private string ListMovies()
+		private string ListMovies(List<string> parameters)
 		{
-			return this.movieCmd.List();
+			return this.movieCmd.List(parameters);
 		}
 	}
 }

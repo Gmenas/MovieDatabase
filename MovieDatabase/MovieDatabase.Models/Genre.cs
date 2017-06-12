@@ -2,9 +2,9 @@
 
 namespace MovieDatabase.Models
 {
-	public class Country
+	public class Genre
 	{
-		public Country()
+		public Genre()
 		{
 			this.Movies = new HashSet<Movie>();
 		}

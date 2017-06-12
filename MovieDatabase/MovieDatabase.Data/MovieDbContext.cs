@@ -17,10 +17,14 @@ namespace MovieDatabase.Data
 
 		public DbSet<Country> Countries { get; set; }
 
+		public DbSet<Genre> Genres { get; set; }
+
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Configurations.Add(new MovieConfiguration());
 			modelBuilder.Configurations.Add(new CastMemberConfiguration());
+			modelBuilder.Configurations.Add(new CountryConfiguration());
+			modelBuilder.Configurations.Add(new GenreConfiguration());
 
 			base.OnModelCreating(modelBuilder);
 		}

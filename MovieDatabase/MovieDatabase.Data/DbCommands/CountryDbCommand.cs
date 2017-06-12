@@ -12,7 +12,7 @@ namespace MovieDatabase.Data.DbCommands
 			this.dbContext = dbContext;
 		}
 
-		public Country FindByName(string name)
+		public Country Find(string name)
 		{
 			var country = this.dbContext.Countries
 				.Where(c => c.Name == name)

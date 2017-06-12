@@ -22,7 +22,14 @@ namespace MovieDatabase.Data.DbCommands
 			return movie;
 		}
 
-		public Movie Create(string title, int year, Country country, CastMember director, IList<CastMember> actors)
+		public Movie Create(
+			string title,
+			int year,
+			Country country,
+			CastMember director,
+			float rating,
+			Genre genre,
+			IList<CastMember> actors)
 		{
 			if (this.Find(title) != null)
 			{
@@ -35,6 +42,8 @@ namespace MovieDatabase.Data.DbCommands
 				Year = year,
 				Country = country,
 				Director = director,
+				Rating = rating,
+				Genre = genre,
 				Actors = actors
 			};
 
@@ -43,13 +52,39 @@ namespace MovieDatabase.Data.DbCommands
 			return movie;
 		}
 
-		public string List()
+		public string List(List<string> parameters)
 		{
-			var movies = this.dbContext.Movies
-				.ToList()
-				.Select(x => x.ToString());
+			IEnumerable<string> movies;
+			switch (parameters.FirstOrDefault())
+			{
+				case "by-title":
+					movies = this.dbContext.Movies
+						.OrderBy(x => x.Title)
+						.ToList()
+						.Select(x => x.ToString());
+					break;
+				case "by-rating":
+					movies = this.dbContext.Movies
+						.OrderByDescending(x => x.Rating)
+						.ToList()
+						.Select(x => x.ToString());
+					break;
+				case "by-most-recent":
+					movies = this.dbContext.Movies
+						.OrderByDescending(x => x.Year)
+						.ToList()
+						.Select(x => x.ToString());
+					break;
+				default: // by-last-aded
+					movies = this.dbContext.Movies
+						.ToList()
+						.Select(x => x.ToString())
+						.Reverse();
+					break;
+			}
+			var seperator = new string('-', 20);
 
-			return string.Join("\n\n", movies);
+			return $"{seperator}\n{string.Join("\n\n", movies)}\n{seperator}";
 		}
 	}
 }
