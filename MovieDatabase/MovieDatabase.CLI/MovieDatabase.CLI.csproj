@@ -49,9 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\CommandsFactory.cs" />
+    <Compile Include="Core\CommandsFactory.cs" />
     <Compile Include="Core\Engine.cs" />
-    <Compile Include="Parsers\MovieParser.cs" />
+    <Compile Include="Parsers\CreateCastMemberParser.cs" />
+    <Compile Include="Parsers\CreateMovieParser.cs" />
     <Compile Include="Parsers\Parser.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,6 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure.Annotations;
+﻿using System.Data.Entity;
+using MovieDatabase.Data.ModelConfigurations;
 using MovieDatabase.Models;
 
 namespace MovieDatabase.Data
@@ -20,35 +19,8 @@ namespace MovieDatabase.Data
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
-			//modelBuilder.Entity<Movie>()
-			//	.Property(m => m.Title)
-			//	.IsRequired()
-			//	.HasMaxLength(50)
-			//	.HasColumnAnnotation(
-			//		IndexAnnotation.AnnotationName,
-			//		new IndexAnnotation(
-			//			new IndexAttribute() { IsUnique = true }
-			//	));
-
-			//modelBuilder.Entity<CastMember>()
-			//	.Property(c => c.Name)
-			//	.IsRequired()
-			//	.HasMaxLength(50)
-			//	.HasColumnAnnotation(
-			//		IndexAnnotation.AnnotationName,
-			//		new IndexAnnotation(
-			//			new IndexAttribute() { IsUnique = true }
-			//	));
-
-			modelBuilder.Entity<Movie>()
-			.HasMany(m => m.Actors)
-			.WithMany()
-			.Map(x =>
-			{
-				x.MapLeftKey("Movie_Id");
-				x.MapRightKey("Actor_Id");
-				x.ToTable("MoviesActors");
-			});
+			modelBuilder.Configurations.Add(new MovieConfiguration());
+			modelBuilder.Configurations.Add(new CastMemberConfiguration());
 
 			base.OnModelCreating(modelBuilder);
 		}

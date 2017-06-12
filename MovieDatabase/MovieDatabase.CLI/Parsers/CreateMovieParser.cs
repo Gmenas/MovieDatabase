@@ -1,20 +1,19 @@
 ﻿using System.Linq;
-using MovieDatabase.Data;
 using MovieDatabase.Data.DbCommands;
 using MovieDatabase.Models.Common.Exceptions;
 
 namespace MovieDatabase.CLI.Parsers
 {
-	class MovieParser : Parser
+	class CreateMovieParser: Parser
 	{
-		private MovieCommand movieCmd;
-		private CastMemberCommand castMemberCmd;
-		private CountryCommand countryCmd;
+		private readonly MovieDbCommand movieCmd;
+		private readonly CastMemberDbCommand castMemberCmd;
+		private readonly CountryDbCommand countryCmd;
 
-		public MovieParser(
-			MovieCommand movieCmd,
-			CastMemberCommand castMemberCmd, 
-			CountryCommand countryCmd)
+		public CreateMovieParser(
+			MovieDbCommand movieCmd,
+			CastMemberDbCommand castMemberCmd, 
+			CountryDbCommand countryCmd)
 		{
 			this.movieCmd = movieCmd;
 			this.castMemberCmd = castMemberCmd;
@@ -35,19 +34,26 @@ namespace MovieDatabase.CLI.Parsers
 				throw new UserException("Invalid year");
 			}
 
+			var countryName = GetParameter("Country");
+			var country = this.countryCmd.FindByName(countryName);
+			if (country == null)
+			{
+				throw new UserException("Invalid country");
+			}
+
 			var directorName = GetParameter("Director");
-			var director = this.castMemberCmd.FindByName(directorName);
+			var director = this.castMemberCmd.Find(directorName);
 			if (director == null)
 			{
 				director = this.castMemberCmd.Create(directorName);
 			}
 
-			var actors = GetParameter("Actors")
+			var actors = GetParameter("Cast (seperate with commas)")
 				.Split(',')
 				.Select(x => x.Trim())
 				.Select(a =>
 				{
-					var actor = this.castMemberCmd.FindByName(a);
+					var actor = this.castMemberCmd.Find(a);
 					if (actor == null)
 					{
 						actor = this.castMemberCmd.Create(a);
@@ -55,13 +61,6 @@ namespace MovieDatabase.CLI.Parsers
 					return actor;
 				})
 				.ToList();
-
-			var countryName = GetParameter("Country");
-			var country = this.countryCmd.FindByName(countryName);
-			if (country == null)
-			{
-				throw new UserException("Invalid country");
-			}
 
 			var movie = this.movieCmd.Create(title, year, country, director, actors);
 		}

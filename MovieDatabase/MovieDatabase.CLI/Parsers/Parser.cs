@@ -6,7 +6,7 @@ namespace MovieDatabase.CLI.Parsers
 	{
 		protected string GetParameter(string paramName)
 		{
-			Console.Write($"{paramName}: ");
+			Console.Write($"  {paramName}: ");
 			string param;
 
 			while (true)
@@ -15,7 +15,7 @@ namespace MovieDatabase.CLI.Parsers
 
 				if (param == string.Empty)
 				{
-					Console.WriteLine($"{paramName} cannot be empty");
+					Console.WriteLine($"  {paramName} cannot be empty");
 				}
 				else break;
 			}

@@ -4,16 +4,16 @@ using MovieDatabase.Models;
 
 namespace MovieDatabase.Data.DbCommands
 {
-	public class CastMemberCommand
+	public class CastMemberDbCommand
 	{
-		private MovieDbContext dbContext;
+		private readonly MovieDbContext dbContext;
 
-		public CastMemberCommand(MovieDbContext dbContext)
+		public CastMemberDbCommand(MovieDbContext dbContext)
 		{
 			this.dbContext = dbContext;
 		}
 
-		public CastMember FindByName(string name)
+		public CastMember Find(string name)
 		{
 			var castMember = this.dbContext.CastMembers
 				.Where(c => c.Name == name)
@@ -23,7 +23,7 @@ namespace MovieDatabase.Data.DbCommands
 
 		public CastMember Create(string name)
 		{
-			if (this.FindByName(name) != null)
+			if (this.Find(name) != null)
 			{
 				throw new Exception();
 			}

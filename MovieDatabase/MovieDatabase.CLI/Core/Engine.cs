@@ -15,6 +15,8 @@ namespace MovieDatabase.CLI.Core
 
 		public void Start()
 		{
+			Console.Title = "Gmenas - Movie Database";
+
 			while (true)
 			{
 				string inputLine = Console.ReadLine();
@@ -33,6 +35,10 @@ namespace MovieDatabase.CLI.Core
 				{
 					Console.WriteLine(e.Message);
 				}
+				//catch (Exception)
+				//{
+				//	Console.WriteLine("Unspecified error occured!");
+				//}
 			}
 		}
 	}

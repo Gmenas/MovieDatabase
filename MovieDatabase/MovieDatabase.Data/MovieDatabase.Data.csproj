@@ -47,15 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbCommands\CountryCommand.cs" />
-    <Compile Include="DbCommands\MovieCommand.cs" />
-    <Compile Include="DbCommands\CastMemberCommand.cs" />
+    <Compile Include="DbCommands\CountryDbCommand.cs" />
+    <Compile Include="DbCommands\MovieDbCommand.cs" />
+    <Compile Include="DbCommands\CastMemberDbCommand.cs" />
     <Compile Include="CountryData.cs" />
-    <Compile Include="Migrations\201706120904103_Initial.cs" />
-    <Compile Include="Migrations\201706120904103_Initial.Designer.cs">
-      <DependentUpon>201706120904103_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201706121456260_Initial.cs" />
+    <Compile Include="Migrations\201706121456260_Initial.Designer.cs">
+      <DependentUpon>201706121456260_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelConfigurations\CastMemberConfiguration.cs" />
+    <Compile Include="ModelConfigurations\CountryConfiguration.cs" />
+    <Compile Include="ModelConfigurations\MovieConfiguration.cs" />
     <Compile Include="MovieDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,8 +72,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706120904103_Initial.resx">
-      <DependentUpon>201706120904103_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706121456260_Initial.resx">
+      <DependentUpon>201706121456260_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

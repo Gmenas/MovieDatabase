@@ -12,16 +12,17 @@ namespace MovieDatabase.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false, maxLength: 50),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Name, unique: true);
             
             CreateTable(
                 "dbo.Movies",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(),
+                        Title = c.String(nullable: false, maxLength: 50),
                         Year = c.Int(nullable: false),
                         Country_Id = c.Int(),
                         Director_Id = c.Int(),
@@ -29,6 +30,7 @@ namespace MovieDatabase.Data.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Countries", t => t.Country_Id)
                 .ForeignKey("dbo.CastMembers", t => t.Director_Id)
+                .Index(t => t.Title, unique: true)
                 .Index(t => t.Country_Id)
                 .Index(t => t.Director_Id);
             
@@ -66,6 +68,8 @@ namespace MovieDatabase.Data.Migrations
             DropIndex("dbo.MoviesActors", new[] { "Movie_Id" });
             DropIndex("dbo.Movies", new[] { "Director_Id" });
             DropIndex("dbo.Movies", new[] { "Country_Id" });
+            DropIndex("dbo.Movies", new[] { "Title" });
+            DropIndex("dbo.CastMembers", new[] { "Name" });
             DropTable("dbo.MoviesActors");
             DropTable("dbo.Countries");
             DropTable("dbo.Movies");

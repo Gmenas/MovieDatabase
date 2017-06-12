@@ -5,11 +5,11 @@ using MovieDatabase.Models;
 
 namespace MovieDatabase.Data.DbCommands
 {
-	public class MovieCommand
+	public class MovieDbCommand
 	{
-		private MovieDbContext dbContext;
+		private readonly MovieDbContext dbContext;
 
-		public MovieCommand(MovieDbContext dbContext)
+		public MovieDbCommand(MovieDbContext dbContext)
 		{
 			this.dbContext = dbContext;
 		}
@@ -41,6 +41,15 @@ namespace MovieDatabase.Data.DbCommands
 			this.dbContext.Movies.Add(movie);
 
 			return movie;
+		}
+
+		public string List()
+		{
+			var movies = this.dbContext.Movies
+				.ToList()
+				.Select(x => x.ToString());
+
+			return string.Join("\n\n", movies);
 		}
 	}
 }

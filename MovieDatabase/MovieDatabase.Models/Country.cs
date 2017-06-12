@@ -9,5 +9,10 @@ namespace MovieDatabase.Models
 		public string Name { get; set; }
 
 		public virtual ICollection<Movie> Movies { get; set; }
+
+		public override string ToString()
+		{
+			return this.Name;
+		}
 	}
 }

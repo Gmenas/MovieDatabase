@@ -3,11 +3,11 @@ using MovieDatabase.Models;
 
 namespace MovieDatabase.Data.DbCommands
 {
-	public class CountryCommand
+	public class CountryDbCommand
 	{
-		private MovieDbContext dbContext;
+		private readonly MovieDbContext dbContext;
 
-		public CountryCommand(MovieDbContext dbContext)
+		public CountryDbCommand(MovieDbContext dbContext)
 		{
 			this.dbContext = dbContext;
 		}
