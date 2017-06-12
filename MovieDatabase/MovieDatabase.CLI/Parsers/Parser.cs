@@ -1,17 +1,9 @@
 ﻿using System;
-using MovieDatabase.Data;
 
 namespace MovieDatabase.CLI.Parsers
 {
 	public class Parser
 	{
-		protected MovieDbContext dbContext;
-
-		public Parser(MovieDbContext dbContext)
-		{
-			this.dbContext = dbContext;
-		}
-
 		protected string GetParameter(string paramName)
 		{
 			Console.Write($"{paramName}: ");
@@ -23,7 +15,7 @@ namespace MovieDatabase.CLI.Parsers
 
 				if (param == string.Empty)
 				{
-					Console.WriteLine($"Invalid {paramName}");
+					Console.WriteLine($"{paramName} cannot be empty");
 				}
 				else break;
 			}

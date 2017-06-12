@@ -1,5 +1,5 @@
 ﻿using System;
-using MovieDatabase.CLI.Common.Exceptions;
+using MovieDatabase.Models.Common.Exceptions;
 using MovieDatabase.CLI.Commands;
 
 namespace MovieDatabase.CLI.Core
@@ -26,8 +26,8 @@ namespace MovieDatabase.CLI.Core
 
 				try
 				{
-					string output = this.factory.CreateCommandFromString(inputLine);
-					Console.WriteLine($" -{output}");
+					string output = this.factory.RunCommandFromStr(inputLine);
+					Console.WriteLine(output);
 				}
 				catch (UserException e)
 				{

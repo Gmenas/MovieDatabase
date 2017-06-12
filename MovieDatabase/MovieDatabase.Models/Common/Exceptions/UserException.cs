@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MovieDatabase.CLI.Common.Exceptions
+namespace MovieDatabase.Models.Common.Exceptions
 {
 	public class UserException: Exception
 	{

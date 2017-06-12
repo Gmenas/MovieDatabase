@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieDatabase.CLI", "MovieDatabase.CLI\MovieDatabase.CLI.csproj", "{ABB3329E-0D50-400A-9B9E-E23959377E58}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieDatabase.Data", "MovieDatabase.Data\MovieDatabase.Data.csproj", "{6ECF2F4F-1071-4F54-ADC9-1DA2A3182E54}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieDatabase.Models", "MovieDatabase.Models\MovieDatabase.Models.csproj", "{703E3767-EB49-41CC-A946-1B237F7A1EB5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InitialData", "InitialData", "{F2B199A9-DC41-4626-8968-A6E371738B25}"
+	ProjectSection(SolutionItems) = preProject
+		InitialData\countries.xml = InitialData\countries.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
