@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using MovieDatabase.Data.DbCommands;
 using MovieDatabase.Models.Common.Exceptions;
 
 namespace MovieDatabase.CLI.Parsers
 {
-	class CreateMovieParser: Parser
+	class CreateMovieParser: ConsoleParser
 	{
 		private readonly MovieDbCommand movieCmd;
 		private readonly CastMemberDbCommand castMemberCmd;

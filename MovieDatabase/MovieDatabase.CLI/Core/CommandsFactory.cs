@@ -16,14 +16,19 @@ namespace MovieDatabase.CLI.Commands
 		private readonly CountryDbCommand countryCmd;
 		private readonly GenreDbCommand genreCmd;
 
-		public CommandsFactory(MovieDbContext dbContext)
+		public CommandsFactory(
+			MovieDbContext dbContext,
+			MovieDbCommand movieCmd,
+			CastMemberDbCommand castMemberCmd,
+			CountryDbCommand countryCmd,
+			GenreDbCommand genreCmd)
 		{
 			this.dbContext = dbContext;
 
-			this.movieCmd = new MovieDbCommand(this.dbContext);
-			this.castMemberCmd = new CastMemberDbCommand(this.dbContext);
-			this.countryCmd = new CountryDbCommand(this.dbContext);
-			this.genreCmd = new GenreDbCommand(this.dbContext);
+			this.movieCmd = movieCmd;
+			this.castMemberCmd = castMemberCmd;
+			this.countryCmd = countryCmd;
+			this.genreCmd = genreCmd;
 		}
 
 		public string RunCommandFromStr(string input)
@@ -76,7 +81,7 @@ namespace MovieDatabase.CLI.Commands
 			var genreToCheck = this.movieCmd.Remove(title);
 			this.dbContext.SaveChanges();
 
-			if(this.dbContext.Movies.FirstOrDefault(x=>x.Genre.Name == genreToCheck) == null)
+			if (this.dbContext.Movies.FirstOrDefault(x => x.Genre.Name == genreToCheck) == null)
 			{
 				RemoveGenre(genreToCheck.Split(' ').ToList());
 			}

@@ -2,15 +2,15 @@
 
 namespace MovieDatabase.CLI.Parsers
 {
-	public class Parser
+	public class ConsoleParser
 	{
 		protected string GetParameter(string paramName)
 		{
-			Console.Write($"  {paramName}: ");
 			string param;
 
 			while (true)
 			{
+				Console.Write($"  {paramName}: ");
 				param = Console.ReadLine();
 
 				if (param == string.Empty)

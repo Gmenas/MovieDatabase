@@ -3,7 +3,7 @@ using MovieDatabase.Models.Common.Exceptions;
 
 namespace MovieDatabase.CLI.Parsers
 {
-	class CreateCastMemberParser: Parser
+	class CreateCastMemberParser: ConsoleParser
 	{
 		private CastMemberDbCommand castMemberCmd;
 

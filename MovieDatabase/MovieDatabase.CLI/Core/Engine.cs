@@ -35,10 +35,10 @@ namespace MovieDatabase.CLI.Core
 				{
 					Console.WriteLine(e.Message);
 				}
-				//catch (Exception)
-				//{
-				//	Console.WriteLine("Unspecified error occured!");
-				//}
+				catch (Exception)
+				{
+					Console.WriteLine("Unspecified error occured!");
+				}
 			}
 		}
 	}

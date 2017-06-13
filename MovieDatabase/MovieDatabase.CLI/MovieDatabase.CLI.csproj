@@ -53,7 +53,7 @@
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Parsers\CreateCastMemberParser.cs" />
     <Compile Include="Parsers\CreateMovieParser.cs" />
-    <Compile Include="Parsers\Parser.cs" />
+    <Compile Include="Parsers\ConsoleParser.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
