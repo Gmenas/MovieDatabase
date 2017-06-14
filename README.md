@@ -12,7 +12,7 @@
 - JSON Files
 
 ## Tables Relations
-![Tables](http://i.imgur.com/l8TQzCy.png)
+![Tables](./images/tables.png)
 
 ## Frameworks used
 - Entity Framework
